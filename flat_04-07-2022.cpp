@@ -23,7 +23,7 @@ public:
 	//{
 	//	cout << "\nСработал Конструктор копирования\n";
 	//}
-	~Flat() {} // Деструктор
+	
 	// Перегрузка оператора равенство
 	friend bool operator ==(const Flat psquare1,
 		const Flat psquare2)
@@ -38,19 +38,28 @@ public:
 		return psquare1.price > psquare2.price;
 
 	}
-	//// Перегруженное присваивание
-	void foo operator=(const Flat & other)
+	//////// Перегруженное присваивание для поля prise
+	////Flat operator=(const Flat & other)
+	////{
+	////	this->price = other.price;
+	////	cout << "вызвался конструктор копирования" <<"\t" << this << endl;
+	////	return  Flat();
+	////}
+	//// Перегруженное присваивание для двух полей
+	Flat operator=(const Flat& other)
 	{
-		
-		return psquare1.price = psquare2.price;
+		this->price = other.price;
+		this->square = other.square;
+		cout << "вызвался конструктор копирования" << "\t" << this << endl;
+		return  Flat();
 	}
-
 	void display() const
 	{
 		cout << endl;
 		cout << "(" << square << "," << price << ")";
 		cout << endl;
 	}
+	~Flat() {} // Деструктор
 };
 
 
@@ -59,8 +68,8 @@ int main()
 	system("chcp 1251");
 
 	cout << "Hello World!\n";
-	Flat one(1.22, 50);
-	Flat two(1.2, 10);
+	Flat one(11.11, 11);
+	Flat two(22.2, 222);
 	one.display();
 	two.display();
 	if (one == two)
@@ -69,13 +78,18 @@ int main()
 	}else cout << "Цена не равна" << endl;
 	Flat tree;
 	tree.display();
-	tree = one;
+	tree = two;
 	tree.display();
-	if (one > two) 
-		{
-			cout << "Цена 1 квартиры > второй" << endl;
-		}
-	else cout << "Цена 1 квартиры !> второй" << endl;
+	Flat four(100, 550);
+	four.display();
+	four = one;
+	four.display();
+
+	////if (one > two) 
+	////	{
+	////		cout << "Цена 1 квартиры > второй" << endl;
+	////	}
+	////else cout << "Цена 1 квартиры !> второй" << endl;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
