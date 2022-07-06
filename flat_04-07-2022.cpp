@@ -39,12 +39,11 @@ public:
 
 	}
 	//// Перегруженное присваивание
-	//friend Flat operator=(const Flat psquare1,
-	//	const Flat psquare2)
-	//{
-	//	
-	//	return psquare1.price = psquare2.price;
-	//}
+	void foo operator=(const Flat & other)
+	{
+		
+		return psquare1.price = psquare2.price;
+	}
 
 	void display() const
 	{
